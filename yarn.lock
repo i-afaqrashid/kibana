@@ -4792,6 +4792,10 @@
   version "0.0.0"
   uid ""
 
+"@kbn/apm-api-shared@link:src/platform/packages/shared/kbn-apm-api-shared":
+  version "0.0.0"
+  uid ""
+
 "@kbn/apm-common@link:src/platform/packages/shared/kbn-apm-common":
   version "0.0.0"
   uid ""
