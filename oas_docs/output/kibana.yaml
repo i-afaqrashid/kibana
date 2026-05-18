@@ -426,6 +426,9 @@ paths:
                     allow_multiple_system_actions:
                       description: Indicates whether multiple instances of the same system action connector can be used in a single rule.
                       type: boolean
+                    description:
+                      description: Description of the connector type.
+                      type: string
                     enabled:
                       description: Indicates whether the connector is enabled.
                       type: boolean
@@ -440,6 +443,9 @@ paths:
                       type: string
                     is_deprecated:
                       description: Indicates whether the connector type is deprecated.
+                      type: boolean
+                    is_experimental:
+                      description: Indicates whether the connector type is in technical preview.
                       type: boolean
                     is_system_action_type:
                       description: Indicates whether the action is a system action.
@@ -1240,7 +1246,8 @@ paths:
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
         > warn
-        > This endpoint is designed for A2A protocol clients and should not be used directly via REST APIs. Use an A2A SDK or A2A Inspector instead.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        > This endpoint is designed for A2A protocol clients and should not be used directly via REST APIs. Use an A2A SDK or A2A Inspector instead.
+        To learn more about the Agent Builder A2A server, refer to the [A2A server documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/a2a-server).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: post-agent-builder-a2a-agentid
       parameters:
         - description: The unique identifier of the agent to send the A2A task to.
@@ -1296,7 +1303,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Get agent discovery metadata in JSON format. Use this endpoint to provide agent information for A2A protocol integration and discovery.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Get agent discovery metadata in JSON format. Use this endpoint to provide agent information for A2A protocol integration and discovery. To learn more about the Agent Builder A2A server, refer to the [A2A server documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/a2a-server).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-a2a-agentid.json
       parameters:
         - description: The unique identifier of the agent to get A2A metadata for.
@@ -1375,7 +1382,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        List all available agents. Use this endpoint to retrieve complete agent information including their current configuration and assigned tools. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        List all available agents. Use this endpoint to retrieve complete agent information including their current configuration and assigned tools. To learn more about agents, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-agents
       parameters: []
       responses:
@@ -1440,7 +1447,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Create a new agent. Use this endpoint to define the agent's behavior, appearance, and capabilities through comprehensive configuration options. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
+        Create a new agent. Use this endpoint to define the agent's behavior, appearance, and capabilities through comprehensive configuration options. To learn more about agents, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
       operationId: post-agent-builder-agents
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -1660,7 +1667,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Returns paginated, per-conversation token consumption data for a given agent. Includes input/output token counts, round counts, LLM call counts, and warnings for conversations with high token usage. Requires the manageAgents privilege.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
+        Returns paginated, per-conversation token consumption data for a given agent. Includes input/output token counts, round counts, LLM call counts, and warnings for conversations with high token usage. Requires the manageAgents privilege. To learn more about monitoring agent token usage, refer to the [monitor usage documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/monitor-usage).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
       operationId: post-agent-builder-agents-agent-id-consumption
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -1818,7 +1825,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Delete an agent by ID. This action cannot be undone. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
+        Delete an agent by ID. This action cannot be undone. To learn more about agents, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
       operationId: delete-agent-builder-agents-id
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -1869,7 +1876,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Get a specific agent by ID. Use this endpoint to retrieve the complete agent definition including all configuration details and tool assignments. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Get a specific agent by ID. Use this endpoint to retrieve the complete agent definition including all configuration details and tool assignments. To learn more about agents, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-agents-id
       parameters:
         - description: The unique identifier of the agent to retrieve.
@@ -1928,7 +1935,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Update an existing agent configuration. Use this endpoint to modify any aspect of the agent's behavior, appearance, or capabilities. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
+        Update an existing agent configuration. Use this endpoint to modify any aspect of the agent's behavior, appearance, or capabilities. To learn more about agents, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.
       operationId: put-agent-builder-agents-id
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -2140,7 +2147,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        List all conversations for a user. Use the optional agent ID to filter conversations by a specific agent.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        List all conversations for a user. Use the optional agent ID to filter conversations by a specific agent. To learn more about agent conversations, refer to the [agent chat documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/chat).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-conversations
       parameters:
         - description: Optional agent ID to filter conversations by a specific agent.
@@ -2191,7 +2198,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Delete a conversation by ID. This action cannot be undone.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Delete a conversation by ID. This action cannot be undone. To learn more about agent conversations, refer to the [agent chat documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/chat).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: delete-agent-builder-conversations-conversation-id
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -2242,7 +2249,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Get a specific conversation by ID. Use this endpoint to retrieve the complete conversation history including all messages and metadata.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Get a specific conversation by ID. Use this endpoint to retrieve the complete conversation history including all messages and metadata. To learn more about agent conversations, refer to the [agent chat documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/chat).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-conversations-conversation-id
       parameters:
         - description: The unique identifier of the conversation to retrieve.
@@ -2895,7 +2902,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Send a message to an agent and receive a complete response. This synchronous endpoint waits for the agent to fully process your request before returning the final result. Use this for simple chat interactions where you need the complete response. To learn more, refer to the [agent chat documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/chat).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Send a message to an agent and receive a complete response. This synchronous endpoint waits for the agent to fully process your request before returning the final result. Use this for simple chat interactions where you need the complete response. To learn more about agent chat, refer to the [agent chat documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/chat).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: post-agent-builder-converse
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -3503,7 +3510,7 @@ paths:
 
         > warn
         > This endpoint is designed for MCP clients (Claude Desktop, Cursor, VS Code, etc.) and should not be used directly via REST APIs. Use MCP Inspector or native MCP clients instead.
-        To learn more, refer to the [MCP documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        To learn more about the Agent Builder MCP server, refer to the [MCP documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: post-agent-builder-mcp
       parameters:
         - description: Comma-separated list of namespaces to filter tools. Only tools matching the specified namespaces will be returned.
@@ -3564,7 +3571,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        List all installed plugins and their managed assets. Plugins are installable packages that bundle agent capabilities such as skills, following the [Claude agent plugin specification](https://code.claude.com/docs/en/plugins).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        List all installed plugins and their managed assets. Plugins are installable packages that bundle agent capabilities such as skills, following the [Claude agent plugin specification](https://code.claude.com/docs/en/plugins). To learn more about Agent Builder plugins, refer to the [plugins documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/plugins).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-plugins
       parameters: []
       responses:
@@ -3625,7 +3632,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Delete an installed plugin by ID. This action cannot be undone.<br/><br/>[Required authorization] Route required privileges: agentBuilder:write.
+        Delete an installed plugin by ID. This action cannot be undone. To learn more about Agent Builder plugins, refer to the [plugins documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/plugins).<br/><br/>[Required authorization] Route required privileges: agentBuilder:write.
       operationId: delete-agent-builder-plugins-pluginid
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -3683,7 +3690,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Get a specific plugin by ID.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Get a specific plugin by ID. To learn more about Agent Builder plugins, refer to the [plugins documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/plugins).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-plugins-pluginid
       parameters:
         - description: The unique identifier of the plugin.
@@ -3749,7 +3756,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Install a plugin from a [GitHub Claude plugin URL](https://code.claude.com/docs/en/plugins) or a direct ZIP URL. Plugins bundle agent capabilities such as skills.<br/><br/>[Required authorization] Route required privileges: agentBuilder:write.
+        Install a plugin from a [GitHub Claude plugin URL](https://code.claude.com/docs/en/plugins) or a direct ZIP URL. Plugins bundle agent capabilities such as skills. To learn more about Agent Builder plugins, refer to the [plugins documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/plugins).<br/><br/>[Required authorization] Route required privileges: agentBuilder:write.
       operationId: post-agent-builder-plugins-install
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -3853,7 +3860,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        List all available skills (built-in and user-created).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        List all available skills (built-in and user-created). To learn more about Agent Builder skills, refer to the [skills documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/skills).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-skills
       parameters:
         - description: Set to true to include skills from plugins.
@@ -3863,10 +3870,42 @@ paths:
           schema:
             default: false
             type: boolean
-      responses: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                listSkillsResponseExample:
+                  description: Example response returning a list of skills
+                  value:
+                    results:
+                      - description: A built-in skill provided by the platform.
+                        experimental: false
+                        id: built-in-skill-id
+                        name: Built-in Skill
+                        readonly: true
+                        referenced_content_count: 0
+                      - description: A user-created skill for data analysis.
+                        experimental: false
+                        id: custom-skill-id
+                        name: Custom Skill
+                        readonly: false
+                        referenced_content_count: 1
+                        tool_ids:
+                          - platform.core.search
+          description: Indicates a successful response
       summary: List skills
       tags:
         - agent builder
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl \
+              -X GET "https://${KIBANA_URL}/api/agent_builder/skills" \
+              -H "Authorization: ApiKey ${API_KEY}"
+        - lang: Console
+          source: |
+            GET kbn:/api/agent_builder/skills
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
         - content: Kibana
@@ -3879,7 +3918,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Create a new user-defined skill.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.
+        Create a new user-defined skill. To learn more about Agent Builder skills, refer to the [skills documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/skills).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.
       operationId: post-agent-builder-skills
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -3892,6 +3931,16 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              createSkillRequestExample:
+                description: Example request to create a user-defined skill
+                value:
+                  content: You are an expert data analyst. Use the available tools to query and analyze data.
+                  description: A skill for performing custom data analysis.
+                  id: my-custom-skill
+                  name: Custom Analysis Skill
+                  tool_ids:
+                    - platform.core.search
             schema:
               additionalProperties: false
               type: object
@@ -3941,10 +3990,51 @@ paths:
                 - name
                 - description
                 - content
-      responses: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                createSkillResponseExample:
+                  description: Example response returning the created skill
+                  value:
+                    content: You are an expert data analyst. Use the available tools to query and analyze data.
+                    description: A skill for performing custom data analysis.
+                    experimental: false
+                    id: my-custom-skill
+                    name: Custom Analysis Skill
+                    readonly: false
+                    tool_ids:
+                      - platform.core.search
+          description: Indicates a successful response
       summary: Create a skill
       tags:
         - agent builder
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl \
+              -X POST "https://${KIBANA_URL}/api/agent_builder/skills" \
+              -H "Authorization: ApiKey ${API_KEY}" \
+              -H "kbn-xsrf: true" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "id": "my-custom-skill",
+                "name": "Custom Analysis Skill",
+                "description": "A skill for performing custom data analysis.",
+                "content": "You are an expert data analyst.",
+                "tool_ids": ["platform.core.search"]
+              }'
+        - lang: Console
+          source: |
+            POST kbn:/api/agent_builder/skills
+            {
+              "id": "my-custom-skill",
+              "name": "Custom Analysis Skill",
+              "description": "A skill for performing custom data analysis.",
+              "content": "You are an expert data analyst.",
+              "tool_ids": ["platform.core.search"]
+            }
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
         - content: Kibana
@@ -3958,7 +4048,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Delete a user-created skill by ID. If agents still reference the skill, the request returns 409 unless force=true, which removes the skill from agents first. Built-in skills cannot be deleted.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.
+        Delete a user-created skill by ID. If agents still reference the skill, the request returns 409 unless force=true, which removes the skill from agents first. Built-in skills cannot be deleted. To learn more about Agent Builder skills, refer to the [skills documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/skills).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.
       operationId: delete-agent-builder-skills-skillid
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -4018,7 +4108,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Get a specific skill by ID.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Get a specific skill by ID. To learn more about Agent Builder skills, refer to the [skills documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/skills).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-skills-skillid
       parameters:
         - description: The unique identifier of the skill.
@@ -4029,10 +4119,35 @@ paths:
             maxLength: 512
             minLength: 1
             type: string
-      responses: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                getSkillResponseExample:
+                  description: Example response returning a skill by ID
+                  value:
+                    content: You are an expert data analyst. Use the available tools to query and analyze data.
+                    description: A skill for performing custom data analysis.
+                    experimental: false
+                    id: my-custom-skill
+                    name: Custom Analysis Skill
+                    readonly: false
+                    tool_ids:
+                      - platform.core.search
+          description: Indicates a successful response
       summary: Get a skill by id
       tags:
         - agent builder
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl \
+              -X GET "https://${KIBANA_URL}/api/agent_builder/skills/{skillId}" \
+              -H "Authorization: ApiKey ${API_KEY}"
+        - lang: Console
+          source: |
+            GET kbn:/api/agent_builder/skills/{skillId}
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
         - content: Kibana
@@ -4045,7 +4160,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Update an existing user-created skill.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.
+        Update an existing user-created skill. To learn more about Agent Builder skills, refer to the [skills documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/skills).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.
       operationId: put-agent-builder-skills-skillid
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -4066,6 +4181,16 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              updateSkillRequestExample:
+                description: Example request to update a user-defined skill
+                value:
+                  content: Updated skill instructions content.
+                  description: Updated description for the skill.
+                  name: Updated Skill Name
+                  tool_ids:
+                    - platform.core.search
+                    - platform.core.execute_esql
             schema:
               additionalProperties: false
               type: object
@@ -4106,10 +4231,46 @@ paths:
                     type: string
                   maxItems: 100
                   type: array
-      responses: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                updateSkillResponseExample:
+                  description: Example response returning the updated skill
+                  value:
+                    content: Updated skill instructions content.
+                    description: Updated description for the skill.
+                    experimental: false
+                    id: my-custom-skill
+                    name: Updated Skill Name
+                    readonly: false
+                    tool_ids:
+                      - platform.core.search
+                      - platform.core.execute_esql
+          description: Indicates a successful response
       summary: Update a skill
       tags:
         - agent builder
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl \
+              -X PUT "https://${KIBANA_URL}/api/agent_builder/skills/{skillId}" \
+              -H "Authorization: ApiKey ${API_KEY}" \
+              -H "kbn-xsrf: true" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "name": "Updated Skill Name",
+                "description": "Updated description for the skill."
+              }'
+        - lang: Console
+          source: |
+            PUT kbn:/api/agent_builder/skills/{skillId}
+            {
+              "name": "Updated Skill Name",
+              "description": "Updated description for the skill."
+            }
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
         - content: Kibana
@@ -4123,7 +4284,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        List all available tools. Use this endpoint to retrieve complete tool definitions including their schemas and configuration requirements. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        List all available tools. Use this endpoint to retrieve complete tool definitions including their schemas and configuration requirements. To learn more about Agent Builder tools, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-tools
       parameters: []
       responses:
@@ -4295,7 +4456,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Create a new tool. Use this endpoint to define a custom tool with specific functionality and configuration for use by agents. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.
+        Create a new tool. Use this endpoint to define a custom tool with specific functionality and configuration for use by agents. To learn more about Agent Builder tools, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.
       operationId: post-agent-builder-tools
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -4501,7 +4662,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Run a tool with parameters. Use this endpoint to run a tool directly with specified inputs and optional external connector integration. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Run a tool with parameters. Use this endpoint to run a tool directly with specified inputs and optional external connector integration. To learn more about Agent Builder tools, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: post-agent-builder-tools-execute
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -4732,7 +4893,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Delete a tool by ID. This action cannot be undone. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.
+        Delete a tool by ID. This action cannot be undone. To learn more about Agent Builder tools, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.
       operationId: delete-agent-builder-tools-toolid
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -4790,7 +4951,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Get a specific tool by ID. Use this endpoint to retrieve the complete tool definition including its schema and configuration requirements. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
+        Get a specific tool by ID. Use this endpoint to retrieve the complete tool definition including its schema and configuration requirements. To learn more about Agent Builder tools, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.
       operationId: get-agent-builder-tools-toolid
       parameters:
         - description: The unique identifier of the tool to retrieve.
@@ -4926,7 +5087,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Update an existing tool. Use this endpoint to modify any aspect of the tool's configuration or metadata. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.
+        Update an existing tool. Use this endpoint to modify any aspect of the tool's configuration or metadata. To learn more about Agent Builder tools, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.
       operationId: put-agent-builder-tools-toolid
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -9027,6 +9188,103 @@ paths:
         <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/alerting/rule/{id}/_update_api_key</span></div>
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+  /api/alerting/rule/{id}/query_inspector:
+    get:
+      description: |-
+        **Spaces method and path for this operation:**
+
+        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/alerting/rule/{id}/query_inspector</span></div>
+
+        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+
+        Returns the Elasticsearch query that a rule executes, and optionally its response.
+      operationId: get-alerting-rule-id-query-inspector
+      parameters:
+        - description: The identifier for the rule.
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - description: The inspection mode. Use "build" to return only the query, or "execute" to run the query and include the response.
+          in: query
+          name: mode
+          required: false
+          schema:
+            default: build
+            enum:
+              - build
+              - execute
+            type: string
+        - description: The alert document ID. When provided, the query inspector uses the evaluation time range from the alert instead of the current time.
+          in: query
+          name: alert_id
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                getRuleQueryInspectorResponse:
+                  summary: A query inspector response for a custom threshold rule
+                  value:
+                    queries:
+                      - index: metrics-*
+                        request:
+                          aggs:
+                            groupings:
+                              composite:
+                                size: 500
+                                sources: []
+                          query:
+                            bool:
+                              filter:
+                                - range:
+                                    '@timestamp':
+                                      gte: '2026-01-01T00:00:00.000Z'
+                                      lte: '2026-01-01T00:05:00.000Z'
+                          size: 0
+              schema:
+                additionalProperties: false
+                type: object
+                properties:
+                  queries:
+                    items:
+                      additionalProperties: false
+                      type: object
+                      properties:
+                        index:
+                          type: string
+                        label:
+                          type: string
+                        request:
+                          additionalProperties:
+                            nullable: true
+                          type: object
+                        response:
+                          additionalProperties:
+                            nullable: true
+                          type: object
+                      required:
+                        - index
+                        - request
+                    maxItems: 1000
+                    type: array
+                required:
+                  - queries
+          description: Indicates a successful call.
+        '400':
+          description: Indicates the rule type is not supported or the request parameters are invalid.
+        '404':
+          description: Indicates a rule with the specified rule ID does not exist.
+      summary: Get the Elasticsearch query for a rule
+      tags:
+        - alerting
+      x-metaTags:
+        - content: Kibana
+          name: product_name
   /api/alerting/rule/{id}/snooze_schedule:
     post:
       description: |-
@@ -30741,6 +30999,8 @@ paths:
                                   type: string
                               required:
                                 - enabled
+                            cluster_id:
+                              type: string
                             resources:
                               additionalProperties: false
                               type: object
@@ -30823,7 +31083,6 @@ paths:
                           description: Indicates whether the agent policy has tamper protection enabled. Default false.
                           type: boolean
                         is_verifier:
-                          description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                           type: boolean
                         keep_monitoring_alive:
                           default: false
@@ -30948,6 +31207,9 @@ paths:
                                     minLength: 1
                                     nullable: true
                                     type: string
+                                  condition:
+                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                    type: string
                                   created_at:
                                     type: string
                                   created_by:
@@ -31000,6 +31262,9 @@ paths:
                                           properties:
                                             compiled_input:
                                               nullable: true
+                                            condition:
+                                              description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                              type: string
                                             config:
                                               additionalProperties:
                                                 additionalProperties: false
@@ -31048,6 +31313,9 @@ paths:
                                                 properties:
                                                   compiled_stream:
                                                     nullable: true
+                                                  condition:
+                                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                    type: string
                                                   config:
                                                     additionalProperties:
                                                       additionalProperties: false
@@ -31177,6 +31445,9 @@ paths:
                                           additionalProperties: false
                                           type: object
                                           properties:
+                                            condition:
+                                              description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                              type: string
                                             deprecated:
                                               additionalProperties: false
                                               type: object
@@ -31199,6 +31470,9 @@ paths:
                                                 additionalProperties: false
                                                 type: object
                                                 properties:
+                                                  condition:
+                                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                    type: string
                                                   deprecated:
                                                     additionalProperties: false
                                                     type: object
@@ -31663,6 +31937,8 @@ paths:
                           type: string
                       required:
                         - enabled
+                    cluster_id:
+                      type: string
                     resources:
                       additionalProperties: false
                       type: object
@@ -31724,13 +32000,15 @@ paths:
                 is_protected:
                   type: boolean
                 is_verifier:
-                  description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                   type: boolean
                 keep_monitoring_alive:
                   default: false
                   description: When set to true, monitoring will be enabled but logs/metrics collection will be disabled
                   nullable: true
                   type: boolean
+                min_agent_version:
+                  nullable: true
+                  type: string
                 monitoring_diagnostics:
                   additionalProperties: false
                   type: object
@@ -31798,6 +32076,24 @@ paths:
                   description: Override settings that are defined in the agent policy. Input settings cannot be overridden. The override option should be used only in unusual circumstances and not as a routine procedure.
                   nullable: true
                   type: object
+                package_agent_version_conditions:
+                  items:
+                    additionalProperties: false
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      title:
+                        type: string
+                      version_condition:
+                        type: string
+                    required:
+                      - name
+                      - title
+                      - version_condition
+                  maxItems: 1000
+                  nullable: true
+                  type: array
                 required_versions:
                   items:
                     additionalProperties: false
@@ -31921,6 +32217,8 @@ paths:
                                 type: string
                             required:
                               - enabled
+                          cluster_id:
+                            type: string
                           resources:
                             additionalProperties: false
                             type: object
@@ -32003,7 +32301,6 @@ paths:
                         description: Indicates whether the agent policy has tamper protection enabled. Default false.
                         type: boolean
                       is_verifier:
-                        description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                         type: boolean
                       keep_monitoring_alive:
                         default: false
@@ -32128,6 +32425,9 @@ paths:
                                   minLength: 1
                                   nullable: true
                                   type: string
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                  type: string
                                 created_at:
                                   type: string
                                 created_by:
@@ -32180,6 +32480,9 @@ paths:
                                         properties:
                                           compiled_input:
                                             nullable: true
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           config:
                                             additionalProperties:
                                               additionalProperties: false
@@ -32228,6 +32531,9 @@ paths:
                                               properties:
                                                 compiled_stream:
                                                   nullable: true
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 config:
                                                   additionalProperties:
                                                     additionalProperties: false
@@ -32357,6 +32663,9 @@ paths:
                                         additionalProperties: false
                                         type: object
                                         properties:
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           deprecated:
                                             additionalProperties: false
                                             type: object
@@ -32379,6 +32688,9 @@ paths:
                                               additionalProperties: false
                                               type: object
                                               properties:
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 deprecated:
                                                   additionalProperties: false
                                                   type: object
@@ -32873,6 +33185,8 @@ paths:
                                   type: string
                               required:
                                 - enabled
+                            cluster_id:
+                              type: string
                             resources:
                               additionalProperties: false
                               type: object
@@ -32955,7 +33269,6 @@ paths:
                           description: Indicates whether the agent policy has tamper protection enabled. Default false.
                           type: boolean
                         is_verifier:
-                          description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                           type: boolean
                         keep_monitoring_alive:
                           default: false
@@ -33080,6 +33393,9 @@ paths:
                                     minLength: 1
                                     nullable: true
                                     type: string
+                                  condition:
+                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                    type: string
                                   created_at:
                                     type: string
                                   created_by:
@@ -33132,6 +33448,9 @@ paths:
                                           properties:
                                             compiled_input:
                                               nullable: true
+                                            condition:
+                                              description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                              type: string
                                             config:
                                               additionalProperties:
                                                 additionalProperties: false
@@ -33180,6 +33499,9 @@ paths:
                                                 properties:
                                                   compiled_stream:
                                                     nullable: true
+                                                  condition:
+                                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                    type: string
                                                   config:
                                                     additionalProperties:
                                                       additionalProperties: false
@@ -33309,6 +33631,9 @@ paths:
                                           additionalProperties: false
                                           type: object
                                           properties:
+                                            condition:
+                                              description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                              type: string
                                             deprecated:
                                               additionalProperties: false
                                               type: object
@@ -33331,6 +33656,9 @@ paths:
                                                 additionalProperties: false
                                                 type: object
                                                 properties:
+                                                  condition:
+                                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                    type: string
                                                   deprecated:
                                                     additionalProperties: false
                                                     type: object
@@ -33810,6 +34138,8 @@ paths:
                                 type: string
                             required:
                               - enabled
+                          cluster_id:
+                            type: string
                           resources:
                             additionalProperties: false
                             type: object
@@ -33892,7 +34222,6 @@ paths:
                         description: Indicates whether the agent policy has tamper protection enabled. Default false.
                         type: boolean
                       is_verifier:
-                        description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                         type: boolean
                       keep_monitoring_alive:
                         default: false
@@ -34017,6 +34346,9 @@ paths:
                                   minLength: 1
                                   nullable: true
                                   type: string
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                  type: string
                                 created_at:
                                   type: string
                                 created_by:
@@ -34069,6 +34401,9 @@ paths:
                                         properties:
                                           compiled_input:
                                             nullable: true
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           config:
                                             additionalProperties:
                                               additionalProperties: false
@@ -34117,6 +34452,9 @@ paths:
                                               properties:
                                                 compiled_stream:
                                                   nullable: true
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 config:
                                                   additionalProperties:
                                                     additionalProperties: false
@@ -34246,6 +34584,9 @@ paths:
                                         additionalProperties: false
                                         type: object
                                         properties:
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           deprecated:
                                             additionalProperties: false
                                             type: object
@@ -34268,6 +34609,9 @@ paths:
                                               additionalProperties: false
                                               type: object
                                               properties:
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 deprecated:
                                                   additionalProperties: false
                                                   type: object
@@ -34740,6 +35084,8 @@ paths:
                           type: string
                       required:
                         - enabled
+                    cluster_id:
+                      type: string
                     resources:
                       additionalProperties: false
                       type: object
@@ -34803,13 +35149,15 @@ paths:
                 is_protected:
                   type: boolean
                 is_verifier:
-                  description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                   type: boolean
                 keep_monitoring_alive:
                   default: false
                   description: When set to true, monitoring will be enabled but logs/metrics collection will be disabled
                   nullable: true
                   type: boolean
+                min_agent_version:
+                  nullable: true
+                  type: string
                 monitoring_diagnostics:
                   additionalProperties: false
                   type: object
@@ -34877,6 +35225,24 @@ paths:
                   description: Override settings that are defined in the agent policy. Input settings cannot be overridden. The override option should be used only in unusual circumstances and not as a routine procedure.
                   nullable: true
                   type: object
+                package_agent_version_conditions:
+                  items:
+                    additionalProperties: false
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      title:
+                        type: string
+                      version_condition:
+                        type: string
+                    required:
+                      - name
+                      - title
+                      - version_condition
+                  maxItems: 1000
+                  nullable: true
+                  type: array
                 required_versions:
                   items:
                     additionalProperties: false
@@ -35000,6 +35366,8 @@ paths:
                                 type: string
                             required:
                               - enabled
+                          cluster_id:
+                            type: string
                           resources:
                             additionalProperties: false
                             type: object
@@ -35082,7 +35450,6 @@ paths:
                         description: Indicates whether the agent policy has tamper protection enabled. Default false.
                         type: boolean
                       is_verifier:
-                        description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                         type: boolean
                       keep_monitoring_alive:
                         default: false
@@ -35207,6 +35574,9 @@ paths:
                                   minLength: 1
                                   nullable: true
                                   type: string
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                  type: string
                                 created_at:
                                   type: string
                                 created_by:
@@ -35259,6 +35629,9 @@ paths:
                                         properties:
                                           compiled_input:
                                             nullable: true
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           config:
                                             additionalProperties:
                                               additionalProperties: false
@@ -35307,6 +35680,9 @@ paths:
                                               properties:
                                                 compiled_stream:
                                                   nullable: true
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 config:
                                                   additionalProperties:
                                                     additionalProperties: false
@@ -35436,6 +35812,9 @@ paths:
                                         additionalProperties: false
                                         type: object
                                         properties:
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           deprecated:
                                             additionalProperties: false
                                             type: object
@@ -35458,6 +35837,9 @@ paths:
                                               additionalProperties: false
                                               type: object
                                               properties:
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 deprecated:
                                                   additionalProperties: false
                                                   type: object
@@ -36063,6 +36445,8 @@ paths:
                                 type: string
                             required:
                               - enabled
+                          cluster_id:
+                            type: string
                           resources:
                             additionalProperties: false
                             type: object
@@ -36145,7 +36529,6 @@ paths:
                         description: Indicates whether the agent policy has tamper protection enabled. Default false.
                         type: boolean
                       is_verifier:
-                        description: Indicates this is a short-lived verifier policy used for OTel permission verification.
                         type: boolean
                       keep_monitoring_alive:
                         default: false
@@ -36270,6 +36653,9 @@ paths:
                                   minLength: 1
                                   nullable: true
                                   type: string
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                  type: string
                                 created_at:
                                   type: string
                                 created_by:
@@ -36322,6 +36708,9 @@ paths:
                                         properties:
                                           compiled_input:
                                             nullable: true
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           config:
                                             additionalProperties:
                                               additionalProperties: false
@@ -36370,6 +36759,9 @@ paths:
                                               properties:
                                                 compiled_stream:
                                                   nullable: true
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 config:
                                                   additionalProperties:
                                                     additionalProperties: false
@@ -36499,6 +36891,9 @@ paths:
                                         additionalProperties: false
                                         type: object
                                         properties:
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                            type: string
                                           deprecated:
                                             additionalProperties: false
                                             type: object
@@ -36521,6 +36916,9 @@ paths:
                                               additionalProperties: false
                                               type: object
                                               properties:
+                                                condition:
+                                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                  type: string
                                                 deprecated:
                                                   additionalProperties: false
                                                   type: object
@@ -38462,6 +38860,9 @@ paths:
                         - azure
                         - gcp
                       type: string
+                condition:
+                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                  type: string
                 description:
                   description: Policy description.
                   type: string
@@ -38494,6 +38895,9 @@ paths:
                     additionalProperties: false
                     type: object
                     properties:
+                      condition:
+                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                        type: string
                       deprecated:
                         additionalProperties: false
                         type: object
@@ -38516,6 +38920,9 @@ paths:
                           additionalProperties: false
                           type: object
                           properties:
+                            condition:
+                              description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                              type: string
                             deprecated:
                               additionalProperties: false
                               type: object
@@ -38854,6 +39261,9 @@ paths:
                         minLength: 1
                         nullable: true
                         type: string
+                      condition:
+                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                        type: string
                       created_at:
                         type: string
                       created_by:
@@ -38906,6 +39316,9 @@ paths:
                               properties:
                                 compiled_input:
                                   nullable: true
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -38954,6 +39367,9 @@ paths:
                                     properties:
                                       compiled_stream:
                                         nullable: true
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       config:
                                         additionalProperties:
                                           additionalProperties: false
@@ -39083,6 +39499,9 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 deprecated:
                                   additionalProperties: false
                                   type: object
@@ -39105,6 +39524,9 @@ paths:
                                     additionalProperties: false
                                     type: object
                                     properties:
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       deprecated:
                                         additionalProperties: false
                                         type: object
@@ -41790,6 +42212,58 @@ paths:
       x-metaTags:
         - content: Kibana
           name: product_name
+  /api/fleet/agents/{agentId}/remove_collector:
+    post:
+      description: |-
+        **Spaces method and path for this operation:**
+
+        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agents/{agentId}/remove_collector</span></div>
+
+        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+
+        Remove a specific OpAMP collector from the Fleet agents list. Marks the collector as unenrolled. This action does not invalidate API keys, so the collector can reconnect on its own.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all.
+      operationId: post-fleet-agents-agentid-remove-collector
+      parameters:
+        - description: A required header to protect against CSRF attacks
+          in: header
+          name: kbn-xsrf
+          required: true
+          schema:
+            example: 'true'
+            type: string
+        - description: The collector agent ID
+          in: path
+          name: agentId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                postRemoveCollectorExample:
+                  description: Collector successfully removed
+                  value: {}
+          description: Successful response
+        '400':
+          content:
+            application/json:
+              examples:
+                genericErrorResponseExample:
+                  description: Example of a generic error response
+                  value:
+                    error: Bad Request
+                    message: An error message describing what went wrong
+                    statusCode: 400
+          description: Bad Request
+      summary: Remove an OpAMP collector
+      tags:
+        - Elastic Agent actions
+      x-state: Technical Preview; added in 9.5.0
+      x-metaTags:
+        - content: Kibana
+          name: product_name
   /api/fleet/agents/{agentId}/request_diagnostics:
     post:
       description: |-
@@ -43004,6 +43478,107 @@ paths:
       summary: Bulk reassign agents
       tags:
         - Elastic Agent actions
+      x-metaTags:
+        - content: Kibana
+          name: product_name
+  /api/fleet/agents/bulk_remove_collectors:
+    post:
+      description: |-
+        **Spaces method and path for this operation:**
+
+        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agents/bulk_remove_collectors</span></div>
+
+        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+
+        Remove multiple OpAMP collectors from the Fleet agents list. Marks the collectors as unenrolled. This action does not invalidate API keys, so collectors can reconnect on their own.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all.
+      operationId: post-fleet-agents-bulk-remove-collectors
+      parameters:
+        - description: A required header to protect against CSRF attacks
+          in: header
+          name: kbn-xsrf
+          required: true
+          schema:
+            example: 'true'
+            type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              postBulkRemoveCollectorsRequestExample:
+                description: Remove multiple OpAMP collectors
+                value:
+                  agents:
+                    - collector-id-1
+                    - collector-id-2
+            schema:
+              additionalProperties: false
+              type: object
+              properties:
+                agents:
+                  anyOf:
+                    - items:
+                        description: List of collector agent IDs
+                        type: string
+                      maxItems: 10000
+                      type: array
+                    - description: KQL query string. Leave empty to target all collectors
+                      type: string
+                includeInactive:
+                  description: When passing collectors by KQL query, also removes inactive collectors
+                  type: boolean
+              required:
+                - agents
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                postBulkRemoveCollectorsExample:
+                  description: Bulk remove collectors action result
+                  value:
+                    actionId: action-id-1
+              schema:
+                additionalProperties: false
+                type: object
+                properties:
+                  actionId:
+                    type: string
+                required:
+                  - actionId
+          description: Successful response
+        '400':
+          content:
+            application/json:
+              examples:
+                genericErrorResponseExample:
+                  description: Example of a generic error response
+                  value:
+                    error: Bad Request
+                    message: An error message describing what went wrong
+                    statusCode: 400
+              schema:
+                additionalProperties: false
+                description: Generic Error
+                type: object
+                properties:
+                  attributes:
+                    nullable: true
+                  error:
+                    type: string
+                  errorType:
+                    type: string
+                  message:
+                    type: string
+                  statusCode:
+                    type: number
+                required:
+                  - message
+                  - attributes
+          description: Bad Request
+      summary: Bulk remove OpAMP collectors
+      tags:
+        - Elastic Agent actions
+      x-state: Technical Preview; added in 9.5.0
       x-metaTags:
         - content: Kibana
           name: product_name
@@ -55107,6 +55682,9 @@ paths:
                           minLength: 1
                           nullable: true
                           type: string
+                        condition:
+                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                          type: string
                         created_at:
                           type: string
                         created_by:
@@ -55159,6 +55737,9 @@ paths:
                                 properties:
                                   compiled_input:
                                     nullable: true
+                                  condition:
+                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                    type: string
                                   config:
                                     additionalProperties:
                                       additionalProperties: false
@@ -55207,6 +55788,9 @@ paths:
                                       properties:
                                         compiled_stream:
                                           nullable: true
+                                        condition:
+                                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                          type: string
                                         config:
                                           additionalProperties:
                                             additionalProperties: false
@@ -55336,6 +55920,9 @@ paths:
                                 additionalProperties: false
                                 type: object
                                 properties:
+                                  condition:
+                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                    type: string
                                   deprecated:
                                     additionalProperties: false
                                     type: object
@@ -55358,6 +55945,9 @@ paths:
                                       additionalProperties: false
                                       type: object
                                       properties:
+                                        condition:
+                                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                          type: string
                                         deprecated:
                                           additionalProperties: false
                                           type: object
@@ -55725,6 +56315,9 @@ paths:
                       minLength: 1
                       nullable: true
                       type: string
+                    condition:
+                      description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                      type: string
                     description:
                       description: Package policy description
                       type: string
@@ -55760,6 +56353,9 @@ paths:
                         additionalProperties: false
                         type: object
                         properties:
+                          condition:
+                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                            type: string
                           config:
                             additionalProperties:
                               additionalProperties: false
@@ -55808,6 +56404,9 @@ paths:
                               properties:
                                 compiled_stream:
                                   nullable: true
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                  type: string
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -56057,6 +56656,9 @@ paths:
                       maxItems: 100
                       nullable: true
                       type: array
+                    condition:
+                      description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                      type: string
                     description:
                       description: Policy description.
                       type: string
@@ -56071,6 +56673,9 @@ paths:
                         additionalProperties: false
                         type: object
                         properties:
+                          condition:
+                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                            type: string
                           deprecated:
                             additionalProperties: false
                             type: object
@@ -56093,6 +56698,9 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                  type: string
                                 deprecated:
                                   additionalProperties: false
                                   type: object
@@ -56327,6 +56935,9 @@ paths:
                         minLength: 1
                         nullable: true
                         type: string
+                      condition:
+                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                        type: string
                       created_at:
                         type: string
                       created_by:
@@ -56379,6 +56990,9 @@ paths:
                               properties:
                                 compiled_input:
                                   nullable: true
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -56427,6 +57041,9 @@ paths:
                                     properties:
                                       compiled_stream:
                                         nullable: true
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       config:
                                         additionalProperties:
                                           additionalProperties: false
@@ -56556,6 +57173,9 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 deprecated:
                                   additionalProperties: false
                                   type: object
@@ -56578,6 +57198,9 @@ paths:
                                     additionalProperties: false
                                     type: object
                                     properties:
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       deprecated:
                                         additionalProperties: false
                                         type: object
@@ -57001,6 +57624,9 @@ paths:
                           minLength: 1
                           nullable: true
                           type: string
+                        condition:
+                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                          type: string
                         created_at:
                           type: string
                         created_by:
@@ -57053,6 +57679,9 @@ paths:
                                 properties:
                                   compiled_input:
                                     nullable: true
+                                  condition:
+                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                    type: string
                                   config:
                                     additionalProperties:
                                       additionalProperties: false
@@ -57101,6 +57730,9 @@ paths:
                                       properties:
                                         compiled_stream:
                                           nullable: true
+                                        condition:
+                                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                          type: string
                                         config:
                                           additionalProperties:
                                             additionalProperties: false
@@ -57230,6 +57862,9 @@ paths:
                                 additionalProperties: false
                                 type: object
                                 properties:
+                                  condition:
+                                    description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                    type: string
                                   deprecated:
                                     additionalProperties: false
                                     type: object
@@ -57252,6 +57887,9 @@ paths:
                                       additionalProperties: false
                                       type: object
                                       properties:
+                                        condition:
+                                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                          type: string
                                         deprecated:
                                           additionalProperties: false
                                           type: object
@@ -57724,6 +58362,9 @@ paths:
                         minLength: 1
                         nullable: true
                         type: string
+                      condition:
+                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                        type: string
                       created_at:
                         type: string
                       created_by:
@@ -57776,6 +58417,9 @@ paths:
                               properties:
                                 compiled_input:
                                   nullable: true
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -57824,6 +58468,9 @@ paths:
                                     properties:
                                       compiled_stream:
                                         nullable: true
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       config:
                                         additionalProperties:
                                           additionalProperties: false
@@ -57953,6 +58600,9 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 deprecated:
                                   additionalProperties: false
                                   type: object
@@ -57975,6 +58625,9 @@ paths:
                                     additionalProperties: false
                                     type: object
                                     properties:
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       deprecated:
                                         additionalProperties: false
                                         type: object
@@ -58357,6 +59010,9 @@ paths:
                       minLength: 1
                       nullable: true
                       type: string
+                    condition:
+                      description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                      type: string
                     description:
                       description: Package policy description
                       type: string
@@ -58388,6 +59044,9 @@ paths:
                         additionalProperties: false
                         type: object
                         properties:
+                          condition:
+                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                            type: string
                           config:
                             additionalProperties:
                               additionalProperties: false
@@ -58436,6 +59095,9 @@ paths:
                               properties:
                                 compiled_stream:
                                   nullable: true
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                  type: string
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -58682,6 +59344,9 @@ paths:
                       maxItems: 100
                       nullable: true
                       type: array
+                    condition:
+                      description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                      type: string
                     description:
                       description: Policy description.
                       type: string
@@ -58696,6 +59361,9 @@ paths:
                         additionalProperties: false
                         type: object
                         properties:
+                          condition:
+                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                            type: string
                           deprecated:
                             additionalProperties: false
                             type: object
@@ -58718,6 +59386,9 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                  type: string
                                 deprecated:
                                   additionalProperties: false
                                   type: object
@@ -58951,6 +59622,9 @@ paths:
                         minLength: 1
                         nullable: true
                         type: string
+                      condition:
+                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                        type: string
                       created_at:
                         type: string
                       created_by:
@@ -59003,6 +59677,9 @@ paths:
                               properties:
                                 compiled_input:
                                   nullable: true
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -59051,6 +59728,9 @@ paths:
                                     properties:
                                       compiled_stream:
                                         nullable: true
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       config:
                                         additionalProperties:
                                           additionalProperties: false
@@ -59180,6 +59860,9 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
+                                condition:
+                                  description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                  type: string
                                 deprecated:
                                   additionalProperties: false
                                   type: object
@@ -59202,6 +59885,9 @@ paths:
                                     additionalProperties: false
                                     type: object
                                     properties:
+                                      condition:
+                                        description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                        type: string
                                       deprecated:
                                         additionalProperties: false
                                         type: object
@@ -60008,6 +60694,9 @@ paths:
                                 minLength: 1
                                 nullable: true
                                 type: string
+                              condition:
+                                description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                type: string
                               created_at:
                                 type: string
                               created_by:
@@ -60059,6 +60748,9 @@ paths:
                                       properties:
                                         compiled_input:
                                           nullable: true
+                                        condition:
+                                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                          type: string
                                         config:
                                           additionalProperties:
                                             additionalProperties: false
@@ -60107,6 +60799,9 @@ paths:
                                             properties:
                                               compiled_stream:
                                                 nullable: true
+                                              condition:
+                                                description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                type: string
                                               config:
                                                 additionalProperties:
                                                   additionalProperties: false
@@ -60236,6 +60931,9 @@ paths:
                                       additionalProperties: false
                                       type: object
                                       properties:
+                                        condition:
+                                          description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                          type: string
                                         deprecated:
                                           additionalProperties: false
                                           type: object
@@ -60258,6 +60956,9 @@ paths:
                                             additionalProperties: false
                                             type: object
                                             properties:
+                                              condition:
+                                                description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                                type: string
                                               deprecated:
                                                 additionalProperties: false
                                                 type: object
@@ -60531,6 +61232,9 @@ paths:
                                 minLength: 1
                                 nullable: true
                                 type: string
+                              condition:
+                                description: '**Experimental.** Agent condition expression to evaluate whether to apply this integration to its inputs.'
+                                type: string
                               created_at:
                                 type: string
                               created_by:
@@ -60596,6 +61300,9 @@ paths:
                                   properties:
                                     compiled_input:
                                       nullable: true
+                                    condition:
+                                      description: '**Experimental.** Agent condition expression to evaluate whether to apply this input.'
+                                      type: string
                                     config:
                                       additionalProperties:
                                         additionalProperties: false
@@ -60644,6 +61351,9 @@ paths:
                                         properties:
                                           compiled_stream:
                                             nullable: true
+                                          condition:
+                                            description: '**Experimental.** Agent condition expression to evaluate whether to apply this stream.'
+                                            type: string
                                           config:
                                             additionalProperties:
                                               additionalProperties: false
@@ -81108,7 +81818,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Link one or more entities to a target entity, creating a resolution group. Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.
+        Link one or more entities to a target entity, creating a resolution group. Changes become visible on subsequent reads after the next index refresh (typically <1s). Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.
       operationId: post-security-entity-store-resolution-link
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -81222,7 +81932,7 @@ paths:
 
         Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
 
-        Remove one or more entities from their resolution group. Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.
+        Remove one or more entities from their resolution group. Changes become visible on subsequent reads after the next index refresh (typically <1s). Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.
       operationId: post-security-entity-store-resolution-unlink
       parameters:
         - description: A required header to protect against CSRF attacks
@@ -83064,6 +83774,13 @@ paths:
                       build_number: 100200
                       build_snapshot: false
                       number: 9.3.0
+                statusRedactedResponse:
+                  description: A redacted response returned when the caller is unauthenticated or lacks the `monitor` cluster privilege.
+                  summary: Kibana is available (redacted)
+                  value:
+                    status:
+                      overall:
+                        level: available
               schema:
                 anyOf:
                   - $ref: '#/components/schemas/Kibana_HTTP_APIs_core_status_response'
@@ -83229,6 +83946,7 @@ paths:
                           view: logs.errors-view
                         type: query
                         updated_at: '2025-01-20T14:00:00.000Z'
+          description: A list of all streams.
       summary: Get stream list
       tags:
         - streams
@@ -83265,7 +83983,9 @@ paths:
                   properties: {}
                 - nullable: true
                 - {}
-      responses: {}
+      responses:
+        '200':
+          description: Streams were disabled successfully.
       summary: Disable streams
       tags:
         - streams
@@ -83302,7 +84022,9 @@ paths:
                   properties: {}
                 - nullable: true
                 - {}
-      responses: {}
+      responses:
+        '200':
+          description: Streams were enabled successfully.
       summary: Enable streams
       tags:
         - streams
@@ -83339,7 +84061,9 @@ paths:
                   properties: {}
                 - nullable: true
                 - {}
-      responses: {}
+      responses:
+        '200':
+          description: Streams were resynced successfully.
       summary: Resync streams
       tags:
         - streams
@@ -85158,7 +85882,9 @@ paths:
           schema:
             oneOf:
               - type: string
-              - type: array
+              - items:
+                  type: string
+                type: array
         - description: The monitor types to filter.
           in: query
           name: monitorTypes
@@ -85170,7 +85896,14 @@ paths:
                   - icmp
                   - tcp
                 type: string
-              - type: array
+              - items:
+                  enum:
+                    - browser
+                    - http
+                    - icmp
+                    - tcp
+                  type: string
+                type: array
         - description: The page number for paginated results.
           in: query
           name: page
@@ -85187,7 +85920,9 @@ paths:
           schema:
             oneOf:
               - type: string
-              - type: array
+              - items:
+                  type: string
+                type: array
         - description: A free-text query string.
           in: query
           name: query
@@ -85198,7 +85933,9 @@ paths:
           name: schedules
           schema:
             oneOf:
-              - type: array
+              - items:
+                  type: string
+                type: array
               - type: string
         - description: The field to sort the results by.
           in: query
@@ -85223,7 +85960,9 @@ paths:
           name: status
           schema:
             oneOf:
-              - type: array
+              - items:
+                  type: string
+                type: array
               - type: string
         - description: Tags to filter monitors.
           in: query
@@ -85231,7 +85970,9 @@ paths:
           schema:
             oneOf:
               - type: string
-              - type: array
+              - items:
+                  type: string
+                type: array
         - description: |
             Specifies whether to apply logical AND filtering for specific fields. Accepts either a string with values "tags" or "locations" or an array containing both.
           in: query
@@ -87662,6 +88403,8 @@ paths:
                 defaultConnectors:
                   default: []
                   description: A list of connector IDs to be used as default connectors for new alerts.
+                  items:
+                    type: string
                   type: array
                 defaultEmail:
                   description: |
@@ -88084,6 +88827,7 @@ paths:
               description: Field name to aggregate.
               type: string
             maxItems: 25
+            minItems: 1
             type: array
       responses:
         '200':
@@ -101349,7 +102093,7 @@ components:
             - objects
     Kibana_HTTP_APIs_core_status_redactedResponse:
       additionalProperties: false
-      description: A minimal representation of Kibana's operational status.
+      description: A minimal representation of Kibana's operational status. Returned when the caller is unauthenticated or lacks the `monitor` cluster privilege.
       properties:
         status:
           additionalProperties: false
@@ -111665,6 +112409,42 @@ components:
                 - action
                 - policy_name
                 - to
+            - additionalProperties: false
+              description: Registered domain processor - extracts domain, registered_domain, top_level_domain, subdomain from a FQDN
+              type: object
+              properties:
+                action:
+                  enum:
+                    - registered_domain
+                  type: string
+                customIdentifier:
+                  description: Custom identifier to correlate this processor across outputs
+                  minLength: 1
+                  type: string
+                description:
+                  description: Human-readable notes about this processor step
+                  type: string
+                expression:
+                  description: The string expression containing the FQDN to parse
+                  minLength: 1
+                  type: string
+                ignore_failure:
+                  description: Continue pipeline execution if this processor fails
+                  type: boolean
+                ignore_missing:
+                  description: Skip processing when expression field is missing
+                  type: boolean
+                prefix:
+                  description: The prefix for the output columns. The extracted parts are available as prefix.part_name
+                  minLength: 1
+                  type: string
+                where:
+                  $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
+                  description: Conditional expression controlling whether this processor runs
+              required:
+                - action
+                - expression
+                - prefix
             - additionalProperties: false
               description: Manual ingest pipeline wrapper around native Elasticsearch processors
               type: object
